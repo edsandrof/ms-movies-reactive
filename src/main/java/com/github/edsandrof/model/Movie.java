@@ -18,12 +18,12 @@ public class Movie extends PanacheEntity {
     @Enumerated(EnumType.STRING)
     public List<Genre> genres;
 
-    @ManyToMany(mappedBy = "filmography", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "filmography", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     public List<Actor> cast;
 
     public String synopsis;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "director_id")
     public Director director;
 
